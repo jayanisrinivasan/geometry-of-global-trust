@@ -1,11 +1,10 @@
-// Global variables
 let sampleData = [];
 
 // Show loading message
 document.getElementById("loading").style.display = "block";
 
-// Fetch data from local GitHub repo
-fetch("data/gd4_flower_data_slim.json")
+// Fetch mock data
+fetch("gdc_flower_mock_data.json")
   .then(response => {
     if (!response.ok) throw new Error("Network response was not ok");
     return response.json();
@@ -20,7 +19,6 @@ fetch("data/gd4_flower_data_slim.json")
     alert("Failed to load data.");
   });
 
-// Canvas setup
 const canvas = document.getElementById("flowerCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -59,17 +57,33 @@ function mapEmotionToColor(emotion, intensity) {
   return colors[emotion] || `rgba(200, 200, 200, ${intensity})`;
 }
 
-function drawFlower(data) {
-  clearCanvas();
+function drawFlower(data, offsetX = 0, offsetY = 0, scale = 1) {
   const emotions = Object.entries(data.emotions);
   const numPetals = emotions.length;
-  const baseRadius = 70;
+  const baseRadius = 70 * scale;
 
   emotions.forEach(([emotion, value], index) => {
     const angle = (index * 2 * Math.PI) / numPetals;
     const color = mapEmotionToColor(emotion, value);
-    const radius = baseRadius + value * 50;
-    drawPetal(angle, radius, color);
+    const radius = baseRadius + value * 50 * scale;
+
+    const x = canvas.width / 2 + offsetX;
+    const y = canvas.height / 2 + offsetY;
+    const controlRadius = radius * 0.5;
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.quadraticCurveTo(controlRadius, -radius / 2, 0, -radius);
+    ctx.quadraticCurveTo(-controlRadius, -radius / 2, 0, 0);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    ctx.restore();
   });
 }
 
@@ -96,32 +110,73 @@ function populateSelectors() {
     opt.innerText = a;
     ageSelect.appendChild(opt);
   });
-
-  countrySelect.selectedIndex = 0;
-  ageSelect.selectedIndex = 0;
-  updateFlower();
 }
 
-function updateFlower() {
-  const country = document.getElementById("countrySelect").value;
-  const age = document.getElementById("ageSelect").value;
+function getSelectedValues(selectId) {
+  const select = document.getElementById(selectId);
+  return Array.from(select.selectedOptions).map(opt => opt.value);
+}
 
-  const matched = sampleData.find(
-    d => d.country === country && d.ageGroup === age
+function updateGarden() {
+  clearCanvas();
+  const selectedCountries = getSelectedValues("countrySelect");
+  const selectedAges = getSelectedValues("ageSelect");
+
+  const matched = sampleData.filter(d =>
+    selectedCountries.includes(d.country) && selectedAges.includes(d.ageGroup)
   );
 
-  if (matched) {
-    canvas.style.display = "block";
-    drawFlower(matched);
-  } else {
-    clearCanvas();
-    canvas.style.display = "none";
-    alert("No data available for this combination.");
+  if (matched.length === 0) {
+    alert("No matching data found.");
+    return;
   }
+
+  const radius = 130;
+  matched.forEach((entry, i) => {
+    const angle = (2 * Math.PI * i) / matched.length;
+    const xOffset = radius * Math.cos(angle);
+    const yOffset = radius * Math.sin(angle);
+    drawFlower(entry, xOffset, yOffset, 0.6);
+  });
+
+  canvas.style.display = "block";
 }
 
-// Initialize
+function addUserData(event) {
+  event.preventDefault();
+
+  const country = document.getElementById("userCountry").value.trim();
+  const ageGroup = document.getElementById("userAge").value.trim();
+  const hope = parseFloat(document.getElementById("userHope").value) || 0;
+  const fear = parseFloat(document.getElementById("userFear").value) || 0;
+  const curiosity = parseFloat(document.getElementById("userCuriosity").value) || 0;
+  const anxiety = parseFloat(document.getElementById("userAnxiety").value) || 0;
+  const empowerment = parseFloat(document.getElementById("userEmpowerment").value) || 0;
+
+  if (!country || !ageGroup) {
+    alert("Country and age group are required.");
+    return;
+  }
+
+  const newEntry = {
+    country,
+    ageGroup,
+    emotions: {
+      hope,
+      fear,
+      curiosity,
+      anxiety,
+      empowerment
+    }
+  };
+
+  sampleData.push(newEntry);
+  populateSelectors();
+  alert("Your data was added to the garden!");
+}
+
 window.onload = () => {
-  document.getElementById("countrySelect").addEventListener("change", updateFlower);
-  document.getElementById("ageSelect").addEventListener("change", updateFlower);
+  document.getElementById("countrySelect").addEventListener("change", updateGarden);
+  document.getElementById("ageSelect").addEventListener("change", updateGarden);
+  document.getElementById("userForm").addEventListener("submit", addUserData);
 };
