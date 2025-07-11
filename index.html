@@ -2,45 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Geometry of Global Trust</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="header">
-    <h1>🌐 The Geometry of Global Trust</h1>
-    <p>Visualizing cross-cultural trust in AI through generative floral symbolism.</p>
-  </div>
+  <h1>🌐 The Geometry of Global Trust</h1>
+  <p>Visualizing how we trust AI across cultures through symbolic flowers.</p>
 
-  <div class="controls">
+  <div id="controls">
     <label for="countrySelect">Country:</label>
-    <select id="countrySelect" multiple></select>
+    <select id="countrySelect">
+      <option disabled selected>-- Select Country --</option>
+    </select>
 
     <label for="ageSelect">Age Group:</label>
-    <select id="ageSelect" multiple></select>
+    <select id="ageSelect">
+      <option disabled selected>-- Select Age Group --</option>
+    </select>
 
-    <button onclick="updateFlowerGarden()">🌺 Generate Trust Garden</button>
-    <button onclick="showCustomForm()">➕ Add New Entry</button>
+    <button onclick="updateFlower()">🌸 Generate Your Trust Flower</button>
   </div>
 
-  <div id="customForm" class="hidden">
-    <h3>Add Your Own Trust Data</h3>
-    <label>Country: <input type="text" id="newCountry" /></label>
-    <label>Age Group: <input type="text" id="newAge" /></label>
-    <label>Hope: <input type="range" id="newHope" min="0" max="1" step="0.01" /></label>
-    <label>Fear: <input type="range" id="newFear" min="0" max="1" step="0.01" /></label>
-    <label>Curiosity: <input type="range" id="newCuriosity" min="0" max="1" step="0.01" /></label>
-    <label>Anxiety: <input type="range" id="newAnxiety" min="0" max="1" step="0.01" /></label>
-    <label>Empowerment: <input type="range" id="newEmpowerment" min="0" max="1" step="0.01" /></label>
-    <button onclick="addCustomData()">🔄 Add to Visualization</button>
-    <button onclick="hideCustomForm()">Cancel</button>
+  <div id="userForm">
+    <h2>🌱 Add Your Own Data to the Garden</h2>
+    <label for="newCountry">Country:</label>
+    <input type="text" id="newCountry" placeholder="e.g., Canada" />
+
+    <label for="newAge">Age Group:</label>
+    <input type="text" id="newAge" placeholder="e.g., 18-24" />
+
+    <label>Emotions (0.0 to 1.0):</label>
+    <input type="number" id="hope" placeholder="Hope" min="0" max="1" step="0.01" />
+    <input type="number" id="fear" placeholder="Fear" min="0" max="1" step="0.01" />
+    <input type="number" id="curiosity" placeholder="Curiosity" min="0" max="1" step="0.01" />
+    <input type="number" id="anxiety" placeholder="Anxiety" min="0" max="1" step="0.01" />
+    <input type="number" id="empowerment" placeholder="Empowerment" min="0" max="1" step="0.01" />
+
+    <button onclick="addUserData()">🌼 Plant in the Garden</button>
   </div>
 
-  <div class="canvas-container">
-    <canvas id="flowerCanvas" width="800" height="600"></canvas>
-  </div>
+  <div id="loading" style="display:none;">Loading data...</div>
 
-  <div id="loading" class="loading">Loading data...</div>
+  <canvas id="flowerCanvas" width="500" height="500"></canvas>
 
   <script src="script.js"></script>
 </body>
