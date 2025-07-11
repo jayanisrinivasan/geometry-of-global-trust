@@ -7,46 +7,54 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Geometry of Global Trust 🌐🌸</h1>
+  <header>
+    <h1>🌐 The Geometry of Global Trust</h1>
+    <p>Visualizing how we trust AI across cultures through symbolic flowers.</p>
+  </header>
 
-  <div id="controls">
-    <label for="countrySelect">Select Country</label>
-    <select id="countrySelect" multiple></select>
+  <main>
+    <div class="select-container">
+      <label for="countrySelect">Country:</label>
+      <select id="countrySelect"></select>
 
-    <label for="ageSelect">Select Age Group</label>
-    <select id="ageSelect" multiple></select>
+      <label for="ageSelect">Age Group:</label>
+      <select id="ageSelect"></select>
 
-    <button id="generateBtn">Generate Flower(s)</button>
-    <p id="loading" style="display:none;">Loading data...</p>
-  </div>
+      <button onclick="updateFlower()">🌸 Generate Your Trust Flower</button>
+    </div>
 
-  <canvas id="flowerCanvas" width="600" height="600" style="display:none;"></canvas>
+    <div class="form-container">
+      <h3>🌱 Add Your Own Data to the Garden</h3>
+      <input id="newCountry" placeholder="e.g., Canada" />
+      <input id="newAge" placeholder="e.g., 18-24" />
 
-  <div id="userForm">
-    <h2>🌼 Contribute Your Own 🌼</h2>
-    <label for="newCountry">Country</label>
-    <input type="text" id="newCountry" placeholder="e.g. USA" />
+      <div class="emotion-inputs">
+        <input id="hope" placeholder="Hope" />
+        <input id="fear" placeholder="Fear" />
+        <input id="curiosity" placeholder="Curiosity" />
+        <input id="anxiety" placeholder="Anxiety" />
+        <input id="empowerment" placeholder="Empowerment" />
+      </div>
 
-    <label for="newAge">Age Group</label>
-    <input type="text" id="newAge" placeholder="e.g. 18–24" />
+      <button onclick="addNewFlower()">🌷 Plant in the Garden</button>
+    </div>
 
-    <label for="newHope">Hope</label>
-    <input type="number" step="0.01" id="newHope" min="0" max="1" placeholder="0.0 – 1.0"/>
+    <canvas id="flowerCanvas" width="400" height="400"></canvas>
 
-    <label for="newFear">Fear</label>
-    <input type="number" step="0.01" id="newFear" min="0" max="1" placeholder="0.0 – 1.0"/>
+    <div id="legend">
+      <h3>🌸 Legend: What Each Petal Means</h3>
+      <ul>
+        <li><span style="color:#FFD700;">●</span> <strong>Hope</strong> – Yellow</li>
+        <li><span style="color:#FF0000;">●</span> <strong>Fear</strong> – Red</li>
+        <li><span style="color:#00BFFF;">●</span> <strong>Curiosity</strong> – Sky Blue</li>
+        <li><span style="color:#800080;">●</span> <strong>Anxiety</strong> – Purple</li>
+        <li><span style="color:#228B22;">●</span> <strong>Empowerment</strong> – Green</li>
+      </ul>
+      <p>💡 <em>Petal size and transparency reflect intensity (0–1)</em></p>
+    </div>
 
-    <label for="newCuriosity">Curiosity</label>
-    <input type="number" step="0.01" id="newCuriosity" min="0" max="1" placeholder="0.0 – 1.0"/>
-
-    <label for="newAnxiety">Anxiety</label>
-    <input type="number" step="0.01" id="newAnxiety" min="0" max="1" placeholder="0.0 – 1.0"/>
-
-    <label for="newEmpowerment">Empowerment</label>
-    <input type="number" step="0.01" id="newEmpowerment" min="0" max="1" placeholder="0.0 – 1.0"/>
-
-    <button id="submitEntry">Add My Flower</button>
-  </div>
+    <div id="loading">Loading data...</div>
+  </main>
 
   <script src="script.js"></script>
 </body>
