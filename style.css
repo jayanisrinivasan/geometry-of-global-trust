@@ -1,0 +1,138 @@
+/* === GLOBAL STYLES === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  color: #f0f0f0;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* === HEADER === */
+header {
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  color: #ffcad4;
+  letter-spacing: 1px;
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+/* === FORM CONTROLS === */
+#controls {
+  margin: 2rem auto;
+  max-width: 800px;
+  background-color: #121212;
+  padding: 2rem;
+  border: 1px solid #333;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(255, 202, 212, 0.1);
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-top: 1rem;
+  color: #ddd;
+  font-weight: bold;
+}
+
+form select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border-radius: 0.4rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+form button {
+  margin-top: 2rem;
+  background-color: #ffcad4;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background-color: #ff9aa2;
+  transform: scale(1.05);
+}
+
+/* === CANVAS SECTION === */
+#canvas-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas {
+  border: 2px dashed #ffcad4;
+  border-radius: 10px;
+  background-color: #111;
+  margin-bottom: 1rem;
+}
+
+/* === GARDEN SECTION === */
+#garden {
+  margin-top: 4rem;
+}
+
+#addToGarden {
+  background-color: #a1ffce;
+  color: #000;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+#addToGarden:hover {
+  background-color: #4be2a7;
+  transform: scale(1.05);
+}
+
+#bouquetPreview {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* === FOOTER === */
+footer {
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+footer a {
+  color: #ffcad4;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
