@@ -8,9 +8,11 @@
 
 body {
   background: radial-gradient(circle at top, #1a1a1a, #000);
-  color: #f0f0f0;
+  color: #f5f5f5;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* === HEADER === */
@@ -19,61 +21,56 @@ header {
 }
 
 header h1 {
-  font-size: 2.8rem;
-  color: #ffcad4;
-  letter-spacing: 1px;
+  font-size: 3rem;
+  color: #ffc8dd;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px rgba(255, 200, 221, 0.3);
 }
 
 header p {
   margin-top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: #ccc;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* === FORM CONTROLS === */
+/* === CONTROLS SECTION === */
 #controls {
   margin: 2rem auto;
-  max-width: 800px;
-  background-color: #121212;
+  max-width: 700px;
+  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
   padding: 2rem;
   border: 1px solid #333;
   border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(255, 202, 212, 0.1);
+  box-shadow: 0 0 30px rgba(255, 202, 212, 0.12);
+  backdrop-filter: blur(5px);
 }
 
 form label {
   display: block;
   text-align: left;
   margin-top: 1rem;
-  color: #ddd;
-  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #e0e0e0;
+  font-weight: 600;
 }
 
 form select {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border-radius: 0.4rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
   background-color: #1f1f1f;
   color: #fff;
-  border: 1px solid #444;
+  border: 1px solid #555;
+  transition: border 0.2s ease;
 }
 
-form button {
-  margin-top: 2rem;
-  background-color: #ffcad4;
-  color: #000;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-form button:hover {
-  background-color: #ff9aa2;
-  transform: scale(1.05);
+form select:focus {
+  outline: none;
+  border: 1px solid #ffc8dd;
 }
 
 /* === CANVAS SECTION === */
@@ -85,40 +82,58 @@ form button:hover {
 }
 
 canvas {
-  border: 2px dashed #ffcad4;
-  border-radius: 10px;
+  border: 2px dashed #ffc8dd;
+  border-radius: 12px;
   background-color: #111;
+  max-width: 100%;
+  height: auto;
   margin-bottom: 1rem;
+  box-shadow: 0 0 15px rgba(255, 200, 221, 0.15);
 }
 
-/* === GARDEN SECTION === */
-#garden {
-  margin-top: 4rem;
+/* === LOADING === */
+#loading {
+  color: #aaa;
+  font-style: italic;
+  margin-top: 2rem;
 }
 
+/* === BUTTONS === */
+form button,
 #addToGarden {
-  background-color: #a1ffce;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #ffcad4, #ff9aa2);
   color: #000;
-  padding: 0.7rem 1.5rem;
   border: none;
+  padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 1rem;
   transition: all 0.3s ease;
 }
 
+form button:hover,
 #addToGarden:hover {
-  background-color: #4be2a7;
+  background: linear-gradient(135deg, #ff9aa2, #ff758f);
   transform: scale(1.05);
 }
 
+#addToGarden {
+  background: linear-gradient(135deg, #a1ffce, #faffd1);
+  margin-top: 1rem;
+}
+
+#addToGarden:hover {
+  background: linear-gradient(135deg, #4be2a7, #d6ffd7);
+}
+
+/* === BOUQUET PREVIEW === */
 #bouquetPreview {
   margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 /* === FOOTER === */
@@ -129,10 +144,12 @@ footer {
 }
 
 footer a {
-  color: #ffcad4;
+  color: #ffc8dd;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 footer a:hover {
   text-decoration: underline;
+  color: #ffb3c6;
 }
