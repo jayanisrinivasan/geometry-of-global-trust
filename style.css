@@ -1,155 +1,100 @@
-/* === GLOBAL STYLES === */
-* {
-  box-sizing: border-box;
+body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
-}
-
-body {
-  background: radial-gradient(circle at top, #1a1a1a, #000);
-  color: #f5f5f5;
-  text-align: center;
-  padding: 2rem 1rem;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* === HEADER === */
-header {
-  margin-bottom: 2rem;
-}
-
-header h1 {
-  font-size: 3rem;
-  color: #ffc8dd;
-  letter-spacing: 1.5px;
-  text-shadow: 0 0 10px rgba(255, 200, 221, 0.3);
-}
-
-header p {
-  margin-top: 0.5rem;
-  font-size: 1.25rem;
-  color: #ccc;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* === CONTROLS SECTION === */
-#controls {
-  margin: 2rem auto;
-  max-width: 700px;
-  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-  padding: 2rem;
-  border: 1px solid #333;
-  border-radius: 1rem;
-  box-shadow: 0 0 30px rgba(255, 202, 212, 0.12);
-  backdrop-filter: blur(5px);
-}
-
-form label {
-  display: block;
-  text-align: left;
-  margin-top: 1rem;
-  margin-bottom: 0.25rem;
-  color: #e0e0e0;
-  font-weight: 600;
-}
-
-form select {
-  width: 100%;
-  padding: 0.6rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  background-color: #1f1f1f;
-  color: #fff;
-  border: 1px solid #555;
-  transition: border 0.2s ease;
-}
-
-form select:focus {
-  outline: none;
-  border: 1px solid #ffc8dd;
-}
-
-/* === CANVAS SECTION === */
-#canvas-section {
-  margin-top: 3rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0e0e0e;
+  color: #f0f0f0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: start;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 1rem 0 0.5rem;
+  color: #ffafcc;
+  text-align: center;
+}
+
+h2 {
+  color: #cdb4db;
+  margin: 2rem 0 0.5rem;
+}
+
+p {
+  max-width: 700px;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+#controls, #userForm {
+  background: #1c1c1c;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 90%;
+  max-width: 600px;
+}
+
+label {
+  font-weight: bold;
+  color: #f8f8f8;
+}
+
+select, input[type="number"], input[type="text"] {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 1rem;
+}
+
+button {
+  background: linear-gradient(to right, #ff85a2, #cdb4db);
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #ff6395, #b892dc);
+  transform: scale(1.03);
 }
 
 canvas {
-  border: 2px dashed #ffc8dd;
-  border-radius: 12px;
-  background-color: #111;
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
-  box-shadow: 0 0 15px rgba(255, 200, 221, 0.15);
+  margin-top: 2rem;
+  background: #111;
+  border: 1px dashed #444;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
-/* === LOADING === */
+/* Optional: Loading spinner */
 #loading {
-  color: #aaa;
+  color: #ffafcc;
   font-style: italic;
-  margin-top: 2rem;
-}
-
-/* === BUTTONS === */
-form button,
-#addToGarden {
-  margin-top: 2rem;
-  background: linear-gradient(135deg, #ffcad4, #ff9aa2);
-  color: #000;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-form button:hover,
-#addToGarden:hover {
-  background: linear-gradient(135deg, #ff9aa2, #ff758f);
-  transform: scale(1.05);
-}
-
-#addToGarden {
-  background: linear-gradient(135deg, #a1ffce, #faffd1);
   margin-top: 1rem;
 }
 
-#addToGarden:hover {
-  background: linear-gradient(135deg, #4be2a7, #d6ffd7);
-}
-
-/* === BOUQUET PREVIEW === */
-#bouquetPreview {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-/* === FOOTER === */
-footer {
-  margin-top: 4rem;
-  font-size: 0.9rem;
-  color: #aaa;
-}
-
-footer a {
-  color: #ffc8dd;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-footer a:hover {
-  text-decoration: underline;
-  color: #ffb3c6;
+/* Responsive layout */
+@media (max-width: 600px) {
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
 }
