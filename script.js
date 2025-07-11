@@ -1,25 +1,20 @@
-// script.js
+let sampleData = [];
 
-// Sample dataset structure: Feel free to replace with real data
-const sampleData = [
-  {
-    country: "United States",
-    ageGroup: "18-29",
-    gender: "Female",
-    education: "Tertiary",
-    trustAI: 0.78,
-    trustGovt: 0.55,
-    agency: 0.67,
-    emotions: {
-      hope: 0.8,
-      fear: 0.3,
-      curiosity: 0.9,
-      anxiety: 0.4,
-      empowerment: 0.6
-    }
-  },
-  // Add more entries...
-];
+// Show loading message
+document.getElementById("loading").style.display = "block";
+
+// Fetch data from Dropbox
+fetch("https://www.dropbox.com/scl/fi/9pqwl0p3tqm4wwy4y6dk6/combined_data.json?rlkey=k9hvks7m1pww72wbxepzyaka3&dl=1")
+  .then(response => response.json())
+  .then(data => {
+    sampleData = data;
+    populateSelectors();
+    document.getElementById("loading").style.display = "none";
+  })
+  .catch(error => {
+    console.error("Error loading data:", error);
+    alert("Failed to load data.");
+  });
 
 // Load Canvas
 const canvas = document.getElementById("flowerCanvas");
@@ -79,6 +74,10 @@ function populateSelectors() {
   const countrySelect = document.getElementById("countrySelect");
   const ageSelect = document.getElementById("ageSelect");
 
+  // Clear old options
+  countrySelect.innerHTML = "";
+  ageSelect.innerHTML = "";
+
   const countries = [...new Set(sampleData.map((d) => d.country))];
   const ages = [...new Set(sampleData.map((d) => d.ageGroup))];
 
@@ -95,6 +94,11 @@ function populateSelectors() {
     opt.innerText = a;
     ageSelect.appendChild(opt);
   });
+
+  // Set default and update
+  countrySelect.selectedIndex = 0;
+  ageSelect.selectedIndex = 0;
+  updateFlower();
 }
 
 function updateFlower() {
@@ -105,15 +109,18 @@ function updateFlower() {
     (d) => d.country === country && d.ageGroup === age
   );
 
-  if (matched) drawFlower(matched);
-  else clearCanvas();
+  if (matched) {
+    canvas.style.display = "block";
+    drawFlower(matched);
+  } else {
+    clearCanvas();
+    canvas.style.display = "none";
+    alert("No data available for this combination.");
+  }
 }
 
-// Init
+// Initialize on page load
 window.onload = () => {
-  populateSelectors();
-  updateFlower();
-
   document.getElementById("countrySelect").addEventListener("change", updateFlower);
   document.getElementById("ageSelect").addEventListener("change", updateFlower);
 };
