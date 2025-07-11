@@ -4,74 +4,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Geometry of Global Trust</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon and Fonts -->
   <link rel="icon" href="assets/trust-symbol.png" />
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Header -->
   <header>
     <h1>🌐 The Geometry of Global Trust</h1>
     <p>Visualizing global sentiment toward AI through generative floral symbolism.</p>
   </header>
 
+  <!-- Controls Form -->
   <section id="controls">
     <form id="trustForm">
-      <label for="country">Country:</label>
-      <select id="country" name="country">
-        <option value="usa">USA</option>
-        <option value="brazil">Brazil</option>
-        <option value="india">India</option>
-        <option value="kenya">Kenya</option>
-        <option value="france">France</option>
-        <option value="germany">Germany</option>
-        <option value="japan">Japan</option>
-        <option value="indonesia">Indonesia</option>
-        <option value="southafrica">South Africa</option>
-        <option value="mexico">Mexico</option>
+      <label for="countrySelect">Country:</label>
+      <select id="countrySelect" name="country">
+        <option disabled selected value>-- Select Country --</option>
       </select>
 
-      <label for="age">Age Group:</label>
-      <select id="age" name="age">
-        <option value="18-24">18–24</option>
-        <option value="25-34">25–34</option>
-        <option value="35-49">35–49</option>
-        <option value="50+">50+</option>
+      <label for="ageSelect">Age Group:</label>
+      <select id="ageSelect" name="age">
+        <option disabled selected value>-- Select Age Group --</option>
       </select>
 
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender">
-        <option value="male">Man</option>
-        <option value="female">Woman</option>
-        <option value="nb">Nonbinary</option>
-      </select>
-
-      <label for="education">Education Level:</label>
-      <select id="education" name="education">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-
-      <button type="submit">Generate Your Trust Flower 🌸</button>
+      <button type="submit">🌸 Generate Your Trust Flower</button>
     </form>
   </section>
 
+  <!-- Canvas Visualization -->
   <section id="canvas-section">
     <canvas id="flowerCanvas" width="700" height="700"></canvas>
     <audio id="flowerSound" src="assets/flower.mp3" autoplay loop></audio>
+    <p id="loading" style="display: none;">Loading data...</p>
   </section>
 
+  <!-- Garden Section -->
   <section id="garden">
-    <h2>Add your flower to the Global Garden</h2>
+    <h2>🌍 Add Your Flower to the Global Garden</h2>
     <button id="addToGarden">🌱 Add to Garden</button>
     <div id="bouquetPreview"></div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>Created for the Global Dialogues Challenge | Symbolic AI x Visual Empathy</p>
-    <p><a href="https://github.com/YOUR_USERNAME/geometry-of-global-trust" target="_blank">View Source on GitHub</a></p>
+    <p>Created for the <strong>Global Dialogues Challenge</strong> | Symbolic AI × Visual Empathy</p>
+    <p><a href="https://github.com/jayanisrinivasan/geometry-of-global-trust" target="_blank">View Source on GitHub</a></p>
   </footer>
 
+  <!-- Script -->
   <script src="script.js" defer></script>
 </body>
 </html>
