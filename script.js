@@ -1,11 +1,15 @@
+// Global variables
 let sampleData = [];
 
 // Show loading message
 document.getElementById("loading").style.display = "block";
 
-// Fetch data from Dropbox
-fetch("https://www.dropbox.com/scl/fi/9pqwl0p3tqm4wwy4y6dk6/combined_data.json?rlkey=k9hvks7m1pww72wbxepzyaka3&dl=1")
-  .then(response => response.json())
+// Fetch data from local GitHub repo
+fetch("data/gd4_flower_data_slim.json")
+  .then(response => {
+    if (!response.ok) throw new Error("Network response was not ok");
+    return response.json();
+  })
   .then(data => {
     sampleData = data;
     populateSelectors();
@@ -16,7 +20,7 @@ fetch("https://www.dropbox.com/scl/fi/9pqwl0p3tqm4wwy4y6dk6/combined_data.json?r
     alert("Failed to load data.");
   });
 
-// Load Canvas
+// Canvas setup
 const canvas = document.getElementById("flowerCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -52,12 +56,11 @@ function mapEmotionToColor(emotion, intensity) {
     anxiety: `rgba(128, 0, 128, ${intensity})`,
     empowerment: `rgba(34, 139, 34, ${intensity})`
   };
-  return colors[emotion] || "#ccc";
+  return colors[emotion] || `rgba(200, 200, 200, ${intensity})`;
 }
 
 function drawFlower(data) {
   clearCanvas();
-
   const emotions = Object.entries(data.emotions);
   const numPetals = emotions.length;
   const baseRadius = 70;
@@ -74,28 +77,26 @@ function populateSelectors() {
   const countrySelect = document.getElementById("countrySelect");
   const ageSelect = document.getElementById("ageSelect");
 
-  // Clear old options
   countrySelect.innerHTML = "";
   ageSelect.innerHTML = "";
 
-  const countries = [...new Set(sampleData.map((d) => d.country))];
-  const ages = [...new Set(sampleData.map((d) => d.ageGroup))];
+  const countries = [...new Set(sampleData.map(d => d.country))];
+  const ages = [...new Set(sampleData.map(d => d.ageGroup))];
 
-  countries.forEach((c) => {
+  countries.forEach(c => {
     const opt = document.createElement("option");
     opt.value = c;
     opt.innerText = c;
     countrySelect.appendChild(opt);
   });
 
-  ages.forEach((a) => {
+  ages.forEach(a => {
     const opt = document.createElement("option");
     opt.value = a;
     opt.innerText = a;
     ageSelect.appendChild(opt);
   });
 
-  // Set default and update
   countrySelect.selectedIndex = 0;
   ageSelect.selectedIndex = 0;
   updateFlower();
@@ -106,7 +107,7 @@ function updateFlower() {
   const age = document.getElementById("ageSelect").value;
 
   const matched = sampleData.find(
-    (d) => d.country === country && d.ageGroup === age
+    d => d.country === country && d.ageGroup === age
   );
 
   if (matched) {
@@ -119,7 +120,7 @@ function updateFlower() {
   }
 }
 
-// Initialize on page load
+// Initialize
 window.onload = () => {
   document.getElementById("countrySelect").addEventListener("change", updateFlower);
   document.getElementById("ageSelect").addEventListener("change", updateFlower);
