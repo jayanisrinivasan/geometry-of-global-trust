@@ -1,25 +1,22 @@
-// Global data array
-let flowerData = [];
-
-// Canvas setup
+let sampleData = [];
 const canvas = document.getElementById("flowerCanvas");
 const ctx = canvas.getContext("2d");
 
-// Load data
+// Show loading
 document.getElementById("loading").style.display = "block";
+
+// Load initial data
 fetch("gdc_flower_mock_data.json")
-  .then(res => {
-    if (!res.ok) throw new Error("Failed to fetch data.");
-    return res.json();
-  })
-  .then(data => {
-    flowerData = data;
+  .then((res) => res.json())
+  .then((data) => {
+    sampleData = data;
     populateSelectors();
+    updateFlower();
     document.getElementById("loading").style.display = "none";
   })
-  .catch(err => {
-    console.error(err);
-    alert("Failed to load data.");
+  .catch((err) => {
+    console.error("Failed to load:", err);
+    alert("Could not load flower data.");
   });
 
 function clearCanvas() {
@@ -29,16 +26,18 @@ function clearCanvas() {
 function drawPetal(angle, radius, color) {
   const x = canvas.width / 2;
   const y = canvas.height / 2;
-  const controlRadius = radius * 0.5;
+  const control = radius * 0.5;
 
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(angle);
+
   ctx.beginPath();
   ctx.moveTo(0, 0);
-  ctx.quadraticCurveTo(controlRadius, -radius / 2, 0, -radius);
-  ctx.quadraticCurveTo(-controlRadius, -radius / 2, 0, 0);
+  ctx.quadraticCurveTo(control, -radius / 2, 0, -radius);
+  ctx.quadraticCurveTo(-control, -radius / 2, 0, 0);
   ctx.closePath();
+
   ctx.fillStyle = color;
   ctx.fill();
   ctx.restore();
@@ -49,7 +48,7 @@ function mapEmotionToColor(emotion, intensity) {
     hope: `rgba(255, 215, 0, ${intensity})`,
     fear: `rgba(255, 0, 0, ${intensity})`,
     curiosity: `rgba(0, 191, 255, ${intensity})`,
-    anxiety: `rgba(138, 43, 226, ${intensity})`,
+    anxiety: `rgba(128, 0, 128, ${intensity})`,
     empowerment: `rgba(34, 139, 34, ${intensity})`
   };
   return colors[emotion] || `rgba(200, 200, 200, ${intensity})`;
@@ -73,84 +72,97 @@ function populateSelectors() {
   const countrySelect = document.getElementById("countrySelect");
   const ageSelect = document.getElementById("ageSelect");
 
-  countrySelect.innerHTML = '<option disabled selected>-- Select Country --</option>';
-  ageSelect.innerHTML = '<option disabled selected>-- Select Age Group --</option>';
+  const countries = [...new Set(sampleData.map((d) => d.country))].sort();
+  const ageGroups = [...new Set(sampleData.map((d) => d.ageGroup))].sort();
 
-  const countries = [...new Set(flowerData.map(d => d.country))].sort();
-  const ages = [...new Set(flowerData.map(d => d.ageGroup))].sort();
+  countrySelect.innerHTML = "";
+  ageSelect.innerHTML = "";
 
-  countries.forEach(c => {
+  countries.forEach((c) => {
     const opt = document.createElement("option");
     opt.value = c;
-    opt.innerText = c;
+    opt.textContent = c;
     countrySelect.appendChild(opt);
   });
 
-  ages.forEach(a => {
+  ageGroups.forEach((a) => {
     const opt = document.createElement("option");
     opt.value = a;
-    opt.innerText = a;
+    opt.textContent = a;
     ageSelect.appendChild(opt);
   });
+
+  countrySelect.selectedIndex = 0;
+  ageSelect.selectedIndex = 0;
 }
 
 function updateFlower() {
   const country = document.getElementById("countrySelect").value;
-  const age = document.getElementById("ageSelect").value;
+  const ageGroup = document.getElementById("ageSelect").value;
 
-  const matched = flowerData.find(d => d.country === country && d.ageGroup === age);
+  const found = sampleData.find(
+    (d) => d.country === country && d.ageGroup === ageGroup
+  );
 
-  if (matched) {
+  if (found) {
     canvas.style.display = "block";
-    drawFlower(matched);
+    drawFlower(found);
   } else {
     clearCanvas();
     canvas.style.display = "none";
-    alert("No data for this combination. Try planting your own flower below.");
+    alert("No flower data for this group.");
   }
 }
 
-function addUserData() {
+function addNewFlower() {
   const newCountry = document.getElementById("newCountry").value.trim();
   const newAge = document.getElementById("newAge").value.trim();
 
-  const emotions = {
-    hope: parseFloat(document.getElementById("hope").value) || 0,
-    fear: parseFloat(document.getElementById("fear").value) || 0,
-    curiosity: parseFloat(document.getElementById("curiosity").value) || 0,
-    anxiety: parseFloat(document.getElementById("anxiety").value) || 0,
-    empowerment: parseFloat(document.getElementById("empowerment").value) || 0
-  };
+  const hope = parseFloat(document.getElementById("hope").value);
+  const fear = parseFloat(document.getElementById("fear").value);
+  const curiosity = parseFloat(document.getElementById("curiosity").value);
+  const anxiety = parseFloat(document.getElementById("anxiety").value);
+  const empowerment = parseFloat(document.getElementById("empowerment").value);
 
   if (!newCountry || !newAge) {
     alert("Please enter both country and age group.");
     return;
   }
 
-  const entry = { country: newCountry, ageGroup: newAge, emotions };
-  flowerData.push(entry);
+  const valid = [hope, fear, curiosity, anxiety, empowerment].every(
+    (v) => !isNaN(v) && v >= 0 && v <= 1
+  );
 
-  // Update dropdowns with new values if not already present
-  const countrySelect = document.getElementById("countrySelect");
-  if (![...countrySelect.options].some(opt => opt.value === newCountry)) {
-    const newOpt = document.createElement("option");
-    newOpt.value = newCountry;
-    newOpt.innerText = newCountry;
-    countrySelect.appendChild(newOpt);
+  if (!valid) {
+    alert("All emotions must be numbers between 0 and 1.");
+    return;
   }
 
-  const ageSelect = document.getElementById("ageSelect");
-  if (![...ageSelect.options].some(opt => opt.value === newAge)) {
-    const newOpt = document.createElement("option");
-    newOpt.value = newAge;
-    newOpt.innerText = newAge;
-    ageSelect.appendChild(newOpt);
-  }
+  const newEntry = {
+    country: newCountry,
+    ageGroup: newAge,
+    emotions: {
+      hope,
+      fear,
+      curiosity,
+      anxiety,
+      empowerment
+    }
+  };
 
-  alert("Flower added to the garden! Select it from above to view.");
+  sampleData.push(newEntry);
+  populateSelectors();
+
+  document.getElementById("countrySelect").value = newCountry;
+  document.getElementById("ageSelect").value = newAge;
+  updateFlower();
+
+  // Reset inputs
+  document.getElementById("newCountry").value = "";
+  document.getElementById("newAge").value = "";
+  document.getElementById("hope").value = "";
+  document.getElementById("fear").value = "";
+  document.getElementById("curiosity").value = "";
+  document.getElementById("anxiety").value = "";
+  document.getElementById("empowerment").value = "";
 }
-
-window.onload = () => {
-  document.getElementById("countrySelect").addEventListener("change", updateFlower);
-  document.getElementById("ageSelect").addEventListener("change", updateFlower);
-};
