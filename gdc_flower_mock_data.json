@@ -1,0 +1,277 @@
+[
+  {
+    "country": "United States",
+    "ageGroup": "18-24",
+    "emotions": {
+      "hope": 0.96,
+      "fear": 0.7,
+      "curiosity": 0.13,
+      "anxiety": 0.63,
+      "empowerment": 0.92
+    }
+  },
+  {
+    "country": "United States",
+    "ageGroup": "25-34",
+    "emotions": {
+      "hope": 0.22,
+      "fear": 0.71,
+      "curiosity": 0.67,
+      "anxiety": 0.64,
+      "empowerment": 0.74
+    }
+  },
+  {
+    "country": "United States",
+    "ageGroup": "35-44",
+    "emotions": {
+      "hope": 0.31,
+      "fear": 0.25,
+      "curiosity": 0.56,
+      "anxiety": 0.32,
+      "empowerment": 0.48
+    }
+  },
+  {
+    "country": "United States",
+    "ageGroup": "45-54",
+    "emotions": {
+      "hope": 0.65,
+      "fear": 0.33,
+      "curiosity": 0.61,
+      "anxiety": 0.81,
+      "empowerment": 0.98
+    }
+  },
+  {
+    "country": "United States",
+    "ageGroup": "55+",
+    "emotions": {
+      "hope": 0.36,
+      "fear": 0.61,
+      "curiosity": 0.3,
+      "anxiety": 0.26,
+      "empowerment": 0.12
+    }
+  },
+  {
+    "country": "India",
+    "ageGroup": "18-24",
+    "emotions": {
+      "hope": 0.41,
+      "fear": 0.2,
+      "curiosity": 0.89,
+      "anxiety": 0.63,
+      "empowerment": 0.44
+    }
+  },
+  {
+    "country": "India",
+    "ageGroup": "25-34",
+    "emotions": {
+      "hope": 0.45,
+      "fear": 0.37,
+      "curiosity": 0.44,
+      "anxiety": 0.94,
+      "empowerment": 0.17
+    }
+  },
+  {
+    "country": "India",
+    "ageGroup": "35-44",
+    "emotions": {
+      "hope": 0.96,
+      "fear": 0.41,
+      "curiosity": 0.75,
+      "anxiety": 0.98,
+      "empowerment": 0.41
+    }
+  },
+  {
+    "country": "India",
+    "ageGroup": "45-54",
+    "emotions": {
+      "hope": 0.88,
+      "fear": 0.12,
+      "curiosity": 0.84,
+      "anxiety": 0.27,
+      "empowerment": 0.42
+    }
+  },
+  {
+    "country": "India",
+    "ageGroup": "55+",
+    "emotions": {
+      "hope": 0.59,
+      "fear": 0.48,
+      "curiosity": 0.78,
+      "anxiety": 0.42,
+      "empowerment": 0.2
+    }
+  },
+  {
+    "country": "Germany",
+    "ageGroup": "18-24",
+    "emotions": {
+      "hope": 0.81,
+      "fear": 0.15,
+      "curiosity": 0.74,
+      "anxiety": 0.76,
+      "empowerment": 0.86
+    }
+  },
+  {
+    "country": "Germany",
+    "ageGroup": "25-34",
+    "emotions": {
+      "hope": 0.6,
+      "fear": 0.96,
+      "curiosity": 0.18,
+      "anxiety": 0.82,
+      "empowerment": 0.6
+    }
+  },
+  {
+    "country": "Germany",
+    "ageGroup": "35-44",
+    "emotions": {
+      "hope": 0.32,
+      "fear": 0.77,
+      "curiosity": 0.8,
+      "anxiety": 0.74,
+      "empowerment": 0.65
+    }
+  },
+  {
+    "country": "Germany",
+    "ageGroup": "45-54",
+    "emotions": {
+      "hope": 0.47,
+      "fear": 0.8,
+      "curiosity": 0.56,
+      "anxiety": 0.8,
+      "empowerment": 0.77
+    }
+  },
+  {
+    "country": "Germany",
+    "ageGroup": "55+",
+    "emotions": {
+      "hope": 0.72,
+      "fear": 0.57,
+      "curiosity": 0.6,
+      "anxiety": 0.41,
+      "empowerment": 0.93
+    }
+  },
+  {
+    "country": "Brazil",
+    "ageGroup": "18-24",
+    "emotions": {
+      "hope": 0.27,
+      "fear": 0.59,
+      "curiosity": 0.88,
+      "anxiety": 0.33,
+      "empowerment": 0.86
+    }
+  },
+  {
+    "country": "Brazil",
+    "ageGroup": "25-34",
+    "emotions": {
+      "hope": 0.69,
+      "fear": 0.9,
+      "curiosity": 0.6,
+      "anxiety": 0.29,
+      "empowerment": 0.74
+    }
+  },
+  {
+    "country": "Brazil",
+    "ageGroup": "35-44",
+    "emotions": {
+      "hope": 0.75,
+      "fear": 0.32,
+      "curiosity": 0.44,
+      "anxiety": 0.33,
+      "empowerment": 0.63
+    }
+  },
+  {
+    "country": "Brazil",
+    "ageGroup": "45-54",
+    "emotions": {
+      "hope": 0.44,
+      "fear": 0.47,
+      "curiosity": 0.22,
+      "anxiety": 0.98,
+      "empowerment": 0.19
+    }
+  },
+  {
+    "country": "Brazil",
+    "ageGroup": "55+",
+    "emotions": {
+      "hope": 0.19,
+      "fear": 0.26,
+      "curiosity": 0.18,
+      "anxiety": 0.13,
+      "empowerment": 0.71
+    }
+  },
+  {
+    "country": "Japan",
+    "ageGroup": "18-24",
+    "emotions": {
+      "hope": 0.89,
+      "fear": 0.27,
+      "curiosity": 0.53,
+      "anxiety": 0.63,
+      "empowerment": 0.94
+    }
+  },
+  {
+    "country": "Japan",
+    "ageGroup": "25-34",
+    "emotions": {
+      "hope": 0.88,
+      "fear": 0.47,
+      "curiosity": 0.95,
+      "anxiety": 1.0,
+      "empowerment": 0.79
+    }
+  },
+  {
+    "country": "Japan",
+    "ageGroup": "35-44",
+    "emotions": {
+      "hope": 0.83,
+      "fear": 0.11,
+      "curiosity": 0.35,
+      "anxiety": 0.11,
+      "empowerment": 0.79
+    }
+  },
+  {
+    "country": "Japan",
+    "ageGroup": "45-54",
+    "emotions": {
+      "hope": 0.3,
+      "fear": 0.43,
+      "curiosity": 0.97,
+      "anxiety": 0.65,
+      "empowerment": 0.48
+    }
+  },
+  {
+    "country": "Japan",
+    "ageGroup": "55+",
+    "emotions": {
+      "hope": 0.31,
+      "fear": 0.45,
+      "curiosity": 0.64,
+      "anxiety": 0.51,
+      "empowerment": 0.56
+    }
+  }
+]
