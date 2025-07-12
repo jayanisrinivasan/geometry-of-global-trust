@@ -1,3 +1,34 @@
-This project explores global sentiment toward AI through symbolic flower visuals. Each flower represents a combination of emotions—hope, fear, curiosity, anxiety, and empowerment—based on country and age group data. Users can also create and plant their own flowers in the "Garden," contributing their perspective to the broader landscape of global trust.
+# 🌸 Geometry of Global Trust
 
-I just finished my freshman year at UC Berkeley, and this was inspired by my love for Desmos art and data-driven storytelling. The goal was to build something interactive, lightweight, and meaningful—something that makes abstract sentiment data more accessible and personal.
+**Visualizing how we trust AI across cultures—one flower at a time.**
+
+This interactive project explores global sentiment toward AI using symbolic flower visuals. Each flower represents a unique blend of five emotions:
+
+- 🌞 **Hope**  
+- 😨 **Fear**  
+- 🤔 **Curiosity**  
+- 😟 **Anxiety**  
+- 💪 **Empowerment**
+
+These are mapped from survey data based on **country** and **age group**. Users can also generate and "plant" their own trust flower in a shared digital garden—contributing to a growing, visual archive of public sentiment.
+
+---
+
+## 👩‍💻 Why I Built This
+
+I just wrapped up my **freshman year at UC Berkeley**, and this project was inspired by my long-standing love for **Desmos art** and **data-driven storytelling**. I wanted to create something lightweight, meaningful, and visually compelling—something that transforms abstract trust data into art people can explore and even participate in.
+
+---
+
+## 🧭 Features
+
+- Select country + age group → generate corresponding sentiment flower  
+- Enter your own sentiment scores → plant your own flower in the garden  
+- View and explore all planted flowers on the **Garden** page  
+- Clean interface and intuitive visual legend  
+
+---
+
+## 🪴 Try It Live
+
+👉 [View the Project](https://jayanisrinivasan.github.io/geometry-of-global-trust/)
