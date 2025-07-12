@@ -9,7 +9,49 @@
 <body>
   <header>
     <h1>🌐 The Geometry of Global Trust</h1>
-    <p>Visualizing how we trust AI across cultures through symbolic flowers.</p>
+    <p>Visualizing how we trust AI across cultures through symbolic flowers.</p><!-- LEGEND + NARRATIVE + GARDEN INTEGRATION -->
+<div id="intro" style="margin-bottom: 20px; text-align: center; max-width: 700px; margin: auto;">
+  <h2>The Geometry of Global Trust</h2>
+  <p>
+    What does trust in AI feel like around the world? This project turns emotional responses into generative flowers.
+    Each petal represents an emotion. Each flower represents a culture. Together, they form a garden of global sentiment.
+  </p>
+</div>
+
+<!-- LEGEND SECTION -->
+<div id="legend" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;">
+  <div><span style="display:inline-block;width:15px;height:15px;background-color:rgba(255,215,0,1);"></span> Hope</div>
+  <div><span style="display:inline-block;width:15px;height:15px;background-color:rgba(255,0,0,1);"></span> Fear</div>
+  <div><span style="display:inline-block;width:15px;height:15px;background-color:rgba(0,191,255,1);"></span> Curiosity</div>
+  <div><span style="display:inline-block;width:15px;height:15px;background-color:rgba(128,0,128,1);"></span> Anxiety</div>
+  <div><span style="display:inline-block;width:15px;height:15px;background-color:rgba(34,139,34,1);"></span> Empowerment</div>
+</div>
+
+<!-- KEY EXPLANATION -->
+<div style="text-align: center; font-size: 14px; color: gray; margin-bottom: 30px;">
+  <em>Larger petals = stronger intensity. Colors correspond to emotion. Each flower reflects a unique cultural response.</em>
+</div>
+
+<!-- NEW GARDEN BUTTON -->
+<div style="text-align: center; margin-bottom: 20px;">
+  <button onclick="window.location.href='garden.html'" style="padding: 10px 20px; font-size: 16px; border-radius: 6px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+    View the Global Garden
+  </button>
+</div>
+
+<!-- EXISTING SELECTORS AND CANVAS -->
+<div style="text-align: center;">
+  <label for="countrySelect">Country:</label>
+  <select id="countrySelect"></select>
+
+  <label for="ageSelect" style="margin-left: 10px;">Age Group:</label>
+  <select id="ageSelect"></select>
+</div>
+
+<canvas id="flowerCanvas" width="400" height="400" style="display: block; margin: 20px auto;"></canvas>
+
+<div id="loading" style="text-align: center; font-style: italic; color: gray;">Loading data...</div>
+
   </header>
 
   <main>
