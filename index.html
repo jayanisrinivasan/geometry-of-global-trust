@@ -3,26 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Geometry of Global Trust</title>
+  <title>Geometry of Global Trust</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🌍 The Geometry of Global Trust</h1>
-  <p>Visualizing how we trust AI across cultures through symbolic flowers.</p>
+  <header>
+    <h1>🌐 The Geometry of Global Trust</h1>
+    <p>Visualizing how we trust AI across cultures through symbolic flowers.</p>
+  </header>
 
-  <div class="main-controls">
-    <select id="country-select">
-      <option value="" disabled selected>Select Country</option>
-    </select>
-    <select id="age-select">
-      <option value="" disabled selected>Select Age</option>
-    </select>
-    <button id="generate-btn">🌸 Generate Your Trust Flower</button>
-  </div>
+  <main>
+    <div class="select-container">
+      <label for="countrySelect">Country:</label>
+      <select id="countrySelect"></select>
 
-  <canvas id="flower-canvas" width="400" height="400"></canvas>
+      <label for="ageSelect">Age Group:</label>
+      <select id="ageSelect"></select>
 
-  <a href="garden.html" class="garden-link">🌱 View The Garden</a>
+      <button onclick="updateFlower()">🌸 Generate Your Trust Flower</button>
+    </div>
+
+    <div class="form-container">
+      <h3>🌱 Add Your Own Data to the Garden</h3>
+      <input id="newCountry" placeholder="e.g., Canada" />
+      <input id="newAge" placeholder="e.g., 18-24" />
+
+      <div class="emotion-inputs">
+        <input id="hope" placeholder="Hope" />
+        <input id="fear" placeholder="Fear" />
+        <input id="curiosity" placeholder="Curiosity" />
+        <input id="anxiety" placeholder="Anxiety" />
+        <input id="empowerment" placeholder="Empowerment" />
+      </div>
+
+      <button onclick="addNewFlower()">🌷 Plant in the Garden</button>
+    </div>
+
+    <canvas id="flowerCanvas" width="400" height="400"></canvas>
+
+    <div id="legend">
+      <h3>🌸 Legend: What Each Petal Means</h3>
+      <ul>
+        <li><span style="color:#FFD700;">●</span> <strong>Hope</strong> – Yellow</li>
+        <li><span style="color:#FF0000;">●</span> <strong>Fear</strong> – Red</li>
+        <li><span style="color:#00BFFF;">●</span> <strong>Curiosity</strong> – Sky Blue</li>
+        <li><span style="color:#800080;">●</span> <strong>Anxiety</strong> – Purple</li>
+        <li><span style="color:#228B22;">●</span> <strong>Empowerment</strong> – Green</li>
+      </ul>
+      <p>💡 <em>Petal size and transparency reflect intensity (0–1)</em></p>
+    </div>
+
+    <div id="loading">Loading data...</div>
+  </main>
 
   <script src="script.js"></script>
 </body>
