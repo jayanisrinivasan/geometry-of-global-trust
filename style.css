@@ -1,68 +1,99 @@
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
+  background: linear-gradient(to bottom right, #fdfdfd, #eaf6f6);
+  color: #333;
   text-align: center;
-  background: linear-gradient(to bottom right, #fef9f5, #e7f5f8);
+}
+
+header {
+  padding: 30px 20px 10px;
 }
 
 h1 {
-  font-size: 2rem;
-  color: #222;
+  margin: 0;
+  font-size: 1.8em;
+  color: #1a3c63;
 }
 
-canvas {
-  border: 1px solid #ccc;
-  margin: 1rem auto;
+main {
+  padding: 20px;
+}
+
+.select-container,
+.form-container {
+  background: white;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+label {
+  font-weight: bold;
   display: block;
+  margin-top: 10px;
 }
 
-.main-controls, .controls {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-input, select, button {
-  padding: 0.5rem;
+select, input {
+  padding: 8px;
+  margin-top: 4px;
+  width: 100%;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 button {
-  background-color: #28a745;
+  background-color: #00b894;
   color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 5px;
 }
 
-.legend {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
+button:hover {
+  background-color: #019875;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot.hope { background-color: #FFD700; }
-.dot.fear { background-color: #FF0000; }
-.dot.curiosity { background-color: #00BFFF; }
-.dot.anxiety { background-color: #800080; }
-.dot.empowerment { background-color: #228B22; }
-
-.garden-link {
+#flowerCanvas {
   display: block;
-  margin-top: 2rem;
-  text-decoration: none;
-  color: #28a745;
-  font-weight: bold;
+  margin: 40px auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+#legend {
+  max-width: 500px;
+  margin: 0 auto 60px;
+  padding: 20px;
+  background: #ffffffdd;
+  border-radius: 16px;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+#legend ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0;
+}
+
+#legend li {
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+#loading {
+  display: none;
+  font-style: italic;
+  color: #888;
+  margin-top: 20px;
 }
