@@ -1,0 +1,3 @@
+This project explores global sentiment toward AI through symbolic flower visuals. Each flower represents a combination of emotions—hope, fear, curiosity, anxiety, and empowerment—based on country and age group data. Users can also create and plant their own flowers in the "Garden," contributing their perspective to the broader landscape of global trust.
+
+I just finished my freshman year at UC Berkeley, and this was inspired by my love for Desmos art and data-driven storytelling. The goal was to build something interactive, lightweight, and meaningful—something that makes abstract sentiment data more accessible and personal.
