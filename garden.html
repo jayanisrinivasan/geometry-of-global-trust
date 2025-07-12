@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global AI Sentiment Garden</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 40px;
+    }
+    .flower-card {
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 250px;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+    }
+    .caption {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 Global AI Sentiment Garden</h1>
+    <p>Each flower represents sentiment from a country & age group</p>
+  </header>
+  <main class="gallery" id="flowerGallery"></main>
+
+  <script>
+    const flowerGallery = document.getElementById("flowerGallery");
+
+    fetch("data/gd4_flower_data_slim.json")
+      .then(res => res.json())
+      .then(data => {
+        data.slice(0, 50).forEach((entry, idx) => createFlower(entry, idx));
+      });
+
+    function createFlower(data, index) {
+      const container = document.createElement("div");
+      container.className = "flower-card";
+
+      const canvas = document.createElement("canvas");
+      canvas.width = 200;
+      canvas.height = 200;
+
+      const caption = document.createElement("div");
+      caption.className = "caption";
+      caption.innerText = `${data.country} - ${data.ageGroup}`;
+
+      container.appendChild(canvas);
+      container.appendChild(caption);
+      flowerGallery.appendChild(container);
+
+      drawFlower(canvas, data);
+    }
+
+    function drawFlower(canvas, data) {
+      const ctx = canvas.getContext("2d");
+      const emotions = Object.entries(data.emotions);
+      const numPetals = emotions.length;
+      const baseRadius = 50;
+
+      function drawPetal(angle, radius, color) {
+        const x = canvas.width / 2;
+        const y = canvas.height / 2;
+        const controlRadius = radius * 0.5;
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(controlRadius, -radius / 2, 0, -radius);
+        ctx.quadraticCurveTo(-controlRadius, -radius / 2, 0, 0);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function mapEmotionToColor(emotion, intensity) {
+        const colors = {
+          hope: `rgba(255, 215, 0, ${intensity})`,
+          fear: `rgba(255, 0, 0, ${intensity})`,
+          curiosity: `rgba(0, 191, 255, ${intensity})`,
+          anxiety: `rgba(128, 0, 128, ${intensity})`,
+          empowerment: `rgba(34, 139, 34, ${intensity})`
+        };
+        return colors[emotion] || `rgba(180, 180, 180, ${intensity})`;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      emotions.forEach(([emotion, value], index) => {
+        const angle = (index * 2 * Math.PI) / numPetals;
+        const color = mapEmotionToColor(emotion, value);
+        const radius = baseRadius + value * 30;
+        drawPetal(angle, radius, color);
+      });
+    }
+  </script>
+</body>
+</html>
