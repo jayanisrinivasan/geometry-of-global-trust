@@ -1,69 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Geometry of Global Trust</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>The Geometry of Global Trust</h1>
-    <p class="description">
-      Explore global sentiment toward AI through a symbolic flower visual.
-    </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Geometry of Global Trust</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🌍 The Geometry of Global Trust</h1>
+  <p>Visualizing how we trust AI across cultures through symbolic flowers.</p>
 
-    <div class="controls-container">
-      <select id="country-select">
-        <option disabled selected>Select Country</option>
-      </select>
+  <div class="main-controls">
+    <select id="country-select">
+      <option value="" disabled selected>Select Country</option>
+    </select>
+    <select id="age-select">
+      <option value="" disabled selected>Select Age</option>
+    </select>
+    <button id="generate-btn">🌸 Generate Your Trust Flower</button>
+  </div>
 
-      <select id="age-select">
-        <option disabled selected>Select Age Group</option>
-      </select>
+  <canvas id="flower-canvas" width="400" height="400"></canvas>
 
-      <button id="generate-btn">Generate</button>
-    </div>
+  <a href="garden.html" class="garden-link">🌱 View The Garden</a>
 
-    <canvas id="flower-canvas" width="400" height="400"></canvas>
-
-    <div class="flower-key">
-      <div class="key-box"><span class="key-color key-hope"></span> Hope</div>
-      <div class="key-box"><span class="key-color key-fear"></span> Fear</div>
-      <div class="key-box">
-        <span class="key-color key-curiosity"></span> Curiosity
-      </div>
-      <div class="key-box"><span class="key-color key-anxiety"></span> Anxiety</div>
-      <div class="key-box">
-        <span class="key-color key-empowerment"></span> Empowerment
-      </div>
-    </div>
-
-    <div class="custom-input-container">
-      <input type="text" id="custom-country" placeholder="Your Country" />
-      <input type="text" id="custom-age" placeholder="Your Age Group" />
-      <input type="number" id="hope" placeholder="Hope (0-1)" step="0.01" />
-      <input type="number" id="fear" placeholder="Fear (0-1)" step="0.01" />
-      <input
-        type="number"
-        id="curiosity"
-        placeholder="Curiosity (0-1)"
-        step="0.01"
-      />
-      <input
-        type="number"
-        id="anxiety"
-        placeholder="Anxiety (0-1)"
-        step="0.01"
-      />
-      <input
-        type="number"
-        id="empowerment"
-        placeholder="Empowerment (0-1)"
-        step="0.01"
-      />
-      <button id="plant-btn">Plant in Garden</button>
-    </div>
-
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
