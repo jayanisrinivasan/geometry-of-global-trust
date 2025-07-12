@@ -3,127 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global AI Sentiment Garden</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-    }
-    header {
-      background-color: #222;
-      color: white;
-      padding: 20px;
-    }
-    h1 {
-      margin: 0;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 40px;
-    }
-    .flower-card {
-      background: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 250px;
-    }
-    canvas {
-      display: block;
-      margin: 0 auto;
-    }
-    .caption {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-  </style>
+  <title>The Geometry of Global Trust</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <h1>🌍 Global AI Sentiment Garden</h1>
-    <p>Each flower represents sentiment from a country & age group</p>
-  </header>
-  <main class="gallery" id="flowerGallery"></main>
+  <div class="container">
+    <h1>🌐 The Geometry of Global Trust</h1>
+    <p class="subtext">See how trust in AI takes shape around the world.</p>
 
-  <script>
-    const flowerGallery = document.getElementById("flowerGallery");
+    <div class="selection-panel">
+      <label for="countrySelect">Country:</label>
+      <select id="countrySelect"></select>
 
-    fetch("data/gd4_flower_data_slim.json")
-      .then(res => res.json())
-      .then(data => {
-        data.slice(0, 50).forEach((entry, idx) => createFlower(entry, idx));
-      });
+      <label for="ageSelect">Age Group:</label>
+      <select id="ageSelect"></select>
 
-    function createFlower(data, index) {
-      const container = document.createElement("div");
-      container.className = "flower-card";
+      <button onclick="updateFlower()">🌸 Generate Your Trust Flower</button>
+    </div>
 
-      const canvas = document.createElement("canvas");
-      canvas.width = 200;
-      canvas.height = 200;
+    <canvas id="flowerCanvas" width="400" height="400"></canvas>
 
-      const caption = document.createElement("div");
-      caption.className = "caption";
-      caption.innerText = `${data.country} - ${data.ageGroup}`;
+    <div id="key">
+      <h3>🌼 Flower Key</h3>
+      <ul>
+        <li><span class="dot hope"></span> Hope (gold)</li>
+        <li><span class="dot fear"></span> Fear (red)</li>
+        <li><span class="dot curiosity"></span> Curiosity (blue)</li>
+        <li><span class="dot anxiety"></span> Anxiety (purple)</li>
+        <li><span class="dot empowerment"></span> Empowerment (green)</li>
+      </ul>
+      <p>Petal size reflects intensity of emotion (0–1).</p>
+    </div>
 
-      container.appendChild(canvas);
-      container.appendChild(caption);
-      flowerGallery.appendChild(container);
+    <div class="link-to-garden">
+      <a href="garden.html">🌱 Visit the Trust Garden</a>
+    </div>
+  </div>
 
-      drawFlower(canvas, data);
-    }
-
-    function drawFlower(canvas, data) {
-      const ctx = canvas.getContext("2d");
-      const emotions = Object.entries(data.emotions);
-      const numPetals = emotions.length;
-      const baseRadius = 50;
-
-      function drawPetal(angle, radius, color) {
-        const x = canvas.width / 2;
-        const y = canvas.height / 2;
-        const controlRadius = radius * 0.5;
-
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(angle);
-
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(controlRadius, -radius / 2, 0, -radius);
-        ctx.quadraticCurveTo(-controlRadius, -radius / 2, 0, 0);
-        ctx.closePath();
-        ctx.fillStyle = color;
-        ctx.fill();
-
-        ctx.restore();
-      }
-
-      function mapEmotionToColor(emotion, intensity) {
-        const colors = {
-          hope: `rgba(255, 215, 0, ${intensity})`,
-          fear: `rgba(255, 0, 0, ${intensity})`,
-          curiosity: `rgba(0, 191, 255, ${intensity})`,
-          anxiety: `rgba(128, 0, 128, ${intensity})`,
-          empowerment: `rgba(34, 139, 34, ${intensity})`
-        };
-        return colors[emotion] || `rgba(180, 180, 180, ${intensity})`;
-      }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      emotions.forEach(([emotion, value], index) => {
-        const angle = (index * 2 * Math.PI) / numPetals;
-        const color = mapEmotionToColor(emotion, value);
-        const radius = baseRadius + value * 30;
-        drawPetal(angle, radius, color);
-      });
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
