@@ -4,32 +4,7 @@ fetch("data/gdc_flower_mock_data.json")
   .then((response) => response.json())
   .then((data) => {
     flowerData = data;
-    populateDropdowns();
   });
-
-function populateDropdowns() {
-  const countries = new Set();
-  const ageGroups = new Set();
-  flowerData.forEach((entry) => {
-    countries.add(entry.country);
-    ageGroups.add(entry.ageGroup);
-  });
-
-  const countrySelect = document.getElementById("country-select");
-  const ageSelect = document.getElementById("age-select");
-
-  countries.forEach((c) => {
-    const option = document.createElement("option");
-    option.value = option.textContent = c;
-    countrySelect.appendChild(option);
-  });
-
-  ageGroups.forEach((a) => {
-    const option = document.createElement("option");
-    option.value = option.textContent = a;
-    ageSelect.appendChild(option);
-  });
-}
 
 function drawFlower(emotions) {
   const canvas = document.getElementById("flower-canvas");
@@ -73,16 +48,12 @@ function drawFlower(emotions) {
   ctx.fill();
 }
 
-function getFlowerData(country, ageGroup) {
-  return flowerData.find(
+function onGenerateClick() {
+  const country = document.getElementById("country-input").value;
+  const ageGroup = document.getElementById("age-input").value;
+  const match = flowerData.find(
     (entry) => entry.country === country && entry.ageGroup === ageGroup
   );
-}
-
-function onGenerateClick() {
-  const country = document.getElementById("country-select").value;
-  const ageGroup = document.getElementById("age-select").value;
-  const match = getFlowerData(country, ageGroup);
 
   if (match) {
     drawFlower(match.emotions);
