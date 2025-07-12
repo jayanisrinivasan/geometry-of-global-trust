@@ -23,8 +23,7 @@ I just wrapped up my **freshman year at UC Berkeley**, and this project was insp
 ## 🧭 Features
 
 - Select country + age group → generate corresponding sentiment flower  
-- Enter your own sentiment scores → plant your own flower in the garden  
-- View and explore all planted flowers on the **Garden** page  
+- Enter your own sentiment scores → plant your own flower in the garden   
 - Clean interface and intuitive visual legend  
 
 ---
